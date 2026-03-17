@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bazzigar Login</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      /* 🔥 Gaming Gradient Background */
+      background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
+    }
+
+    .login-box {
+      background: rgba(30, 41, 59, 0.9);
+      padding: 40px;
+      border-radius: 15px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+      animation: fadeIn 1s ease;
+    }
+
+    .login-box h1 {
+      margin-bottom: 20px;
+      color: #22c55e;
+    }
+
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #334155;
+      color: white;
+    }
+
+    button {
+      width: 95%;
+      padding: 12px;
+      background: #22c55e;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #16a34a;
+      transform: scale(1.05);
+    }
+
+    .logo {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+  <div class="logo">🎮</div>
+  <h1>BAZZIGAR</h1>
+
+  <input type="email" id="email" placeholder="Enter Email">
+  <input type="password" id="password" placeholder="Enter Password">
+
+  <button onclick="login()">Login / Signup</button>
+
+</div>
+
+<script>
+
+// 🔥 Firebase Config
+const firebaseConfig = {
+  apiKey: "AIzaSyAtAt7f794mOGC89V298Ai6TViRA7RV5Sk",
+  authDomain: "bazzigar-tournament.firebaseapp.com",
+  projectId: "bazzigar-tournament",
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// 🔐 LOGIN FUNCTION
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    alert("Enter email & password");
+    return;
+  }
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+      alert("✅ Login Success!");
+      window.location.href = "index.html"; // redirect
+    })
+    .catch(() => {
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("✅ Account Created!");
+          window.location.href = "index.html";
+        })
+        .catch(err => alert(err.message));
+    });
+}
+
+</script>
+
+</body>
+</html>

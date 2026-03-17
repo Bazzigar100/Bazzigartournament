@@ -1,0 +1,217 @@
+/* 🌙 GLOBAL */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: white;
+  margin: 0;
+}
+
+/* 🔐 LOGIN */
+#auth {
+  text-align: center;
+  margin-top: 120px;
+}
+
+#auth h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* 🧾 INPUTS */
+input {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+/* 🔘 BUTTONS */
+button {
+  padding: 10px 15px;
+  background: #22c55e;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #16a34a;
+  transform: scale(1.05);
+}
+
+/* 📌 HEADER */
+header {
+  background: #1e293b;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* 📦 SECTIONS */
+section {
+  padding: 20px;
+}
+
+/* 🎮 TOURNAMENT GRID */
+#tournaments {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+/* 🃏 CARD */
+.card {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* 📊 LEADERBOARD */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background: #1e293b;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+/* 🔥 FREE FIRE SLOTS */
+.slots {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.slot-btn {
+  padding: 8px;
+  background: #334155;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.slot-btn:hover {
+  background: #475569;
+}
+
+/* 🔴 BOOKED SLOT */
+.slot-btn.taken {
+  background: red;
+  cursor: not-allowed;
+}
+
+/* 🟢 AVAILABLE SLOT */
+.slot-btn.available {
+  background: #22c55e;
+}
+
+/* 📂 POPUP */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  width: 300px;
+  animation: pop 0.3s ease;
+}
+
+/* 🎬 POPUP ANIMATION */
+@keyframes pop {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 🎮 ROOM BOX */
+#roomBox {
+  border-radius: 10px;
+  text-align: center;
+  background: #1e293b;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .slots {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.logo-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #22c55e;
+}
+.card img {
+  margin-top: 10px;
+  box-shadow: 0 0 10px #22c55e;
+}
+.qr-img {
+  width: 200px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0 0 15px #22c55e;
+}
+
+ /* 💳 PAYMENT POPUP -->
+<div id="qrPopup" class="popup" style="display:none;">
+  <div class="popup-content">
+
+    <h3>💳 Scan & Pay</h3>
+
+    <img src="assets/qr.jpeg" class="qr-img"><br><br>
+
+    <p>UPI ID: <b>6392333100@fam</b></p>
+
+    <input type="number" id="addAmount" placeholder="Enter amount"><br><br>
+
+    <button onclick="confirmAddMoney()">I Have Paid</button>
+    <button onclick="closeQr()">Cancel</button>
+
+  </div>
+</div>
+#historyList .card {
+  margin-bottom: 10px;
+  border-left: 5px solid #22c55e;
+}

@@ -1,0 +1,163 @@
+<a href="support.html" style="color:white; margin-left:15px;">Support</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bazzigar Tournament</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ✅ Firebase CDN (Correct Version for your JS) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+
+<body>
+
+<!-- 🎮 MAIN APP -->
+<div id="app" style="display:none;">
+  <!-- HEADER -->
+  <header>
+    <h1>🎮 BAZZIGAR TOURNAMENT</h1>
+    <div>
+      💰 ₹<span id="balance">0</span>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </header>
+<section>
+  <h2>💰 Wallet</h2>
+<img src="assets/qr.jpeg" class="qr-img">
+<p>UPI ID: <b>6392333100@fam</b></p>
+  <!-- Balance -->
+  <div class="card">
+    <h3>Balance: ₹<span id="balance">0</span></h3>
+  </div>
+
+  <!-- Add Money -->
+  <div class="card">
+    <h3>➕ Add Money</h3>
+
+    <img src="assets/qr.png" style="width:200px; border-radius:10px;"><br><br>
+
+    <p>UPI ID: <b>6392333100@fam</b></p>
+
+    <input type="number" id="addAmount" placeholder="Enter amount"><br><br>
+
+    <button onclick="confirmAddMoney()">I Have Paid</button>
+  </div>
+
+  <!-- Withdraw -->
+  <div class="card">
+    <h3>➖ Withdraw</h3>
+
+    <input type="number" id="withdrawAmount" placeholder="Enter amount"><br><br>
+    <input type="text" id="upiId" placeholder="Enter UPI ID"><br><br>
+
+    <button onclick="withdrawRequest()">Withdraw</button>
+  </div>
+
+</section>
+<section>
+  <h2>📊 Payment History</h2>
+
+  <div id="historyList"></div>
+</section>
+  <!-- 🏆 TOURNAMENTS -->
+  <section>
+    <h2>🏆 Tournaments</h2>
+    <div id="tournaments"></div>
+  </section>
+
+  <!-- 🔥 FREE FIRE CUSTOM -->
+  <section>
+    <h2>🔥 Free Fire BR Custom</h2>
+
+    <div class="card">
+      <h3>Match 1 - 1:00 PM</h3>
+      <p>Entry: ₹100 | Slots: 48</p>
+      <div id="slots1" class="slots"></div>
+    </div>
+
+    <div class="card">
+      <h3>Match 2 - 9:00 PM</h3>
+      <p>Entry: ₹100 | Slots: 48</p>
+      <div id="slots2" class="slots"></div>
+    </div>
+  </section>
+<!-- 🔫 CLASH HEADSHOT -->
+<section>
+  <h2>🔫 Free Fire Clash Headshot</h2>
+
+  <div class="card">
+    <h3>Match 1 - 3:00 PM</h3>
+    <p>Entry: ₹100 | Slots: 8</p>
+    <p>⚔️ All Weapons Allowed</p>
+    <div id="clash1" class="slots"></div>
+  </div>
+
+  <div class="card">
+    <h3>Match 2 - 5:00 PM</h3>
+    <p>Entry: ₹100 | Slots: 8</p>
+    <p>⚔️ All Weapons Allowed</p>
+    <div id="clash2" class="slots"></div>
+  </div>
+</section>
+
+<!-- 📜 RULES -->
+<section>
+  <h2>📜 Tournament Rules</h2>
+  <div class="card">
+    <p>🚫 No hackers allowed (Strict Ban)</p>
+    <p>⚔️ All weapons allowed (Clash matches)</p>
+    <p>⏱️ Join before match timing</p>
+    <p>📵 No abusive behavior</p>
+    <p>💰 Entry fee is non-refundable</p>
+    <p>🎮 Follow fair play policy</p>
+  </div>
+</section>
+  <!-- 🏆 LEADERBOARD -->
+  <section>
+    <h2>📊 Leaderboard</h2>
+    <ul id="leaderboard"></ul>
+  </section>
+
+  <!-- 🎮 ROOM DETAILS -->
+  <div id="roomBox" style="display:none; background:#1e293b; padding:15px; margin:20px;">
+    <h3>🎮 Match Details</h3>
+    <p id="roomId"></p>
+    <p id="roomPass"></p>
+  </div>
+
+</div>
+
+<!-- 📂 POPUP -->
+<div id="popup" class="popup" style="display:none;">
+  <div class="popup-content">
+    <h3>Join Match</h3>
+    <input type="text" id="playerName" placeholder="Enter Username"><br><br>
+    <input type="text" id="playerUid" placeholder="Enter UID"><br><br>
+    <button onclick="confirmJoin()">Confirm</button>
+    <button onclick="closePopup()">Cancel</button>
+  </div>
+<!-- ✅ MAIN SCRIPT -->
+<script src="script.js"></script>
+
+</body>
+</html>
+<!-- 💳 PAYMENT POPUP -->
+<div id="qrPopup" class="popup" style="display:none;">
+  <div class="popup-content">
+
+    <h3>💳 Scan & Pay</h3>
+
+    <img src="assets/qr.jpeg" class="qr-img"><br><br>
+
+    <p>UPI ID: <b>6392333100@fam</b></p>
+
+    <input type="number" id="addAmount" placeholder="Enter amount"><br><br>
+
+    <button onclick="confirmAddMoney()">I Have Paid</button>
+    <button onclick="closeQr()">Cancel</button>
+
+  </div>
+</div>
